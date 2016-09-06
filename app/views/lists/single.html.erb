@@ -1,0 +1,35 @@
+<% content_for :zagolovok, "Mailing list - #{params[:email]}" %>
+
+<a class="btn btn-default" href="/send/<%= params[:email] %>">Send emails</a>
+</br></br>
+<table id="table" data-toggle="table"
+       data-striped="true"
+       data-pagination="true"
+       data-search="true"
+       showColumns="true"
+        data-click-to-select="true"
+        data-url="/lists/<%= params[:email] %>">
+  <thead>
+    <tr>
+      <th data-field="state" data-checkbox="true"></th>
+      <th data-field="address">Address</th>
+      <th data-field="name">Name</th>
+      <th data-field="subscribed">Subscribed</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @list["items"].each do |item| %>
+        <tr>
+        <td><%= item["address"] %></td>
+        <td><%= item["name"] %></td>
+        <td>
+        <% if item["subscribed"] %>
+          Subscribed
+        <% else %>
+          Unsubscribed
+        <% end %>
+        </td>
+		</tr>
+      <% end %>
+    </tbody>
+</table>

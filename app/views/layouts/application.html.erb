@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%= yield(:title) %></title>
+
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">MailGun Web Client</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                
+                    <% url = request.path_info
+                    if current_page?('/')
+                    %>
+                    <li class='active'>
+                    <% else %>
+                    <li>
+                    <% end %>
+                        <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <% url = request.path_info
+                    if url.include?('lists')
+                    %>
+                    <li class='active'>
+                    <% else %>
+                    <li>
+                    <% end %>
+                        <a href="/lists/pages"><i class="fa fa-fw fa-wrench"></i> Mailing Lists</a>
+                    </li>
+                    
+                    <% url = request.path_info
+                    if url.include?('templates')
+                    %>
+                    <li class='active'>
+                    <% else %>
+                    <li>
+                    <% end %>
+                        <a href="/templates/"><i class="fa fa-fw fa-table"></i> Mail Templates</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Dashboard <small><%= yield(:zagolovok) %></small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> <%= yield(:zagolovok) %>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

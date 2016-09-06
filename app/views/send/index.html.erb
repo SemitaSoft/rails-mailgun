@@ -1,0 +1,6 @@
+<% content_for :zagolovok, "Send emails to - #{params[:email]}" %>
+
+<%= form_tag("/send/#{params[:email]}", remote: true) do %>
+  <%= text_area_tag(:message, "Hi, nice site", size: "24x6") %>
+<% end %>
+

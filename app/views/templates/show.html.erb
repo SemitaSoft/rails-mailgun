@@ -1,0 +1,30 @@
+<% content_for :zagolovok, "Mail Templates" %>
+
+<% id = params[:id] %>
+<p><h2>
+<%= form_tag("/templates/#{id}/sendd", remote: true) do %>
+  <%= select_tag 'email', options_for_select(@total["items"].collect {|p| [ p["address"], p["address"] ] }, params[:email]) %>
+	<%= submit_tag "Submit", data: { confirm: "Are you sure want to submit?" }, class: "btn" %>
+<% end %>
+</h2></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @template.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= raw(@template.content) %>
+</p>
+
+<p>
+  <strong>Textcontent:</strong>
+  <%= @template.textcontent %>
+</p>
+
+<div data-no-turbolink><%= link_to 'Edit', edit_template_path(@template), class:"btn btn-primary" %></div>
+</br>
+<%= link_to 'Back', templates_path, class:"btn btn-primary" %>
+
+</br>

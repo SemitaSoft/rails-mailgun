@@ -1,0 +1,26 @@
+<% content_for :zagolovok, "Mailing Lists" %>
+<table data-toggle="table">
+    <thead>
+        <tr>
+            <th>Alias Address</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Access Level</th>
+            <th>Number of Recipients</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @total["items"].each do |item| %>
+        <tr>
+        <td><a href="<%= item["address"] %>"><%= item["address"] %></a></td>
+        <td><%= item["name"] %></td>
+        <td><%= item["description"] %></td>
+        <td><%= item["access_level"] %></td>
+        <td><%= item["members_count"] %></td>
+        <td><%= item["created_at"] %></td>
+		</tr>
+		<% end %>
+
+    </tbody>
+</table>
