@@ -4,7 +4,12 @@
 <p><h2>
 <%= form_tag("/templates/#{id}/sendd", remote: true) do %>
   <%= select_tag 'email', options_for_select(@total["items"].collect {|p| [ p["address"], p["address"] ] }, params[:email]) %>
-	<%= submit_tag "Submit", data: { confirm: "Are you sure want to submit?" }, class: "btn" %>
+	<%= submit_tag "submit", data: { confirm: "Are you sure want to submit?" }, class: "btn" %>
+<% end %>
+
+<%= form_tag(template_batch_send_path(@template), remote: true) do %>
+  <%= select_tag 'email', options_for_select(@total["items"].collect {|p| [ p["address"], p["address"] ] }, params[:email]) %>
+  <%= submit_tag 'batch submit', data: { confirm: "Are you sure want to submit?" }, class: "btn" %>
 <% end %>
 </h2></p>
 

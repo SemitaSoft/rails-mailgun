@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  
-  resources :templates
+
+  resources :templates do
+    resource :batch_send, only: [:create], module: :templates
+  end
 
   root 'main#index'
   get 'lists/pages' => 'lists#index'

@@ -21,5 +21,5 @@
 //= require_tree .
 
 $('.ckeditor').ckeditor({
-  height = 1000;
+  height: 1000;
 });
